@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:impactapp/core/utils/ui_strings.dart';
 import 'package:impactapp/presentation/blocs/user_bloc.dart';
 import 'package:impactapp/presentation/widgets/user_list_item.dart';
 import 'user_detail_page.dart';
@@ -12,24 +13,24 @@ class UserListPage extends StatefulWidget {
 }
 
 class UserListPageState extends State<UserListPage> {
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
+    scrollController.addListener(onScroll);
     context.read<UserBloc>().add(FetchUsers());
   }
 
-  void _onScroll() {
-    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+  void onScroll() {
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
       context.read<UserBloc>().add(FetchUsers());
     }
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -39,7 +40,7 @@ class UserListPageState extends State<UserListPage> {
       backgroundColor: Color(0xff000000),
       appBar: AppBar(
         backgroundColor: Color(0xff000000),
-        title: Text('User List',
+        title: const Text(userList,
             style: TextStyle(
               fontFamily: 'SFPro',
               fontWeight: FontWeight.w500,
@@ -52,7 +53,7 @@ class UserListPageState extends State<UserListPage> {
             return const Center(child: CircularProgressIndicator());
           } else if (state is UserLoaded) {
             return ListView.builder(
-              controller: _scrollController,
+              controller: scrollController,
               itemCount: state.users.length,
               itemBuilder: (context, index) {
                 return UserListItem(

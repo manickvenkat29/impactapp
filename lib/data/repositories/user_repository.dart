@@ -1,10 +1,9 @@
 import 'package:http/http.dart' as http;
+import 'package:impactapp/core/utils/config_string.dart';
 import 'package:impactapp/data/models/user_model.dart';
 import 'dart:convert';
 
 class UserRepository {
-  final String baseUrl = 'https://reqres.in/api';
-
   Future<List<UserModel>> fetchUsers(int page) async {
     final response = await http.get(Uri.parse('$baseUrl/users?page=$page'));
 

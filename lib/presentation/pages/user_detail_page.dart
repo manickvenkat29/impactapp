@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:impactapp/core/utils/ui_strings.dart';
 import 'package:impactapp/data/repositories/user_repository.dart';
 import 'package:impactapp/presentation/blocs/user_bloc.dart';
 
@@ -17,8 +18,8 @@ class UserDetailPage extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: Color(0xffffffff),
         backgroundColor: Color(0xff000000),
-        title: Text('User Detail',
-            style: const TextStyle(
+        title: const Text(userDetails,
+            style: TextStyle(
               fontFamily: 'SFPro',
               fontWeight: FontWeight.w500,
               color: Color(0xffffffff),

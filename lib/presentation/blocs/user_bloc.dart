@@ -13,11 +13,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   List<UserModel> allUsers = [];
 
   UserBloc(this.userRepository) : super(UserInitial()) {
-    on<FetchUsers>(_onFetchUsers);
-    on<FetchUserDetail>(_onFetchUserDetail);
+    on<FetchUsers>(onFetchUsers);
+    on<FetchUserDetail>(onFetchUserDetail);
   }
 
-  void _onFetchUsers(FetchUsers event, Emitter<UserState> emit) async {
+  void onFetchUsers(FetchUsers event, Emitter<UserState> emit) async {
     if (isFetching) return;
     isFetching = true;
 
@@ -33,7 +33,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     isFetching = false;
   }
 
-  void _onFetchUserDetail(FetchUserDetail event, Emitter<UserState> emit) async {
+  void onFetchUserDetail(FetchUserDetail event, Emitter<UserState> emit) async {
     try {
       final user = await userRepository.fetchUser(event.userId);
       emit(UserDetailLoaded(user: user));
