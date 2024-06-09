@@ -50,6 +50,9 @@ lib/
 git clone https://github.com/manickvenkat29/impactapp.git
 cd impactapp
 
+Flutter 3.19.4
+Dart 3.3.2
+
 flutter pub get
 
 ## Project Structure 
